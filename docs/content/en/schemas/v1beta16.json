@@ -1100,6 +1100,11 @@
           "description": "Kubernetes namespace.",
           "x-intellij-html-description": "Kubernetes namespace."
         },
+        "tillerNamespace": {
+          "type": "string",
+          "description": "Tiller namespace.",
+          "x-intellij-html-description": "Tiller namespace."
+        },
         "overrides": {
           "description": "key-value pairs. If present, Skaffold will build a Helm `values` file that overrides the original and use it to call Helm CLI (`--f` flag).",
           "x-intellij-html-description": "key-value pairs. If present, Skaffold will build a Helm <code>values</code> file that overrides the original and use it to call Helm CLI (<code>--f</code> flag)."
@@ -1196,6 +1201,7 @@
         "valuesFiles",
         "values",
         "namespace",
+        "tillerNamespace",
         "version",
         "setValues",
         "setValueTemplates",

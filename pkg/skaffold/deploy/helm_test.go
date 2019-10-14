@@ -84,6 +84,21 @@ var testDeployConfigTemplated = latest.HelmDeploy{
 	}},
 }
 
+var testDeployTillerNamespaceConfig = latest.HelmDeploy{
+	Releases: []latest.HelmRelease{{
+		Name:      "skaffold-helm",
+		ChartPath: "examples/test",
+		Values: map[string]string{
+			"image": "skaffold-helm",
+		},
+		Overrides: schemautil.HelmOverrides{Values: map[string]interface{}{"foo": "bar"}},
+		SetValues: map[string]string{
+			"some.key": "somevalue",
+		},
+		TillerNamespace: "default",
+	}},
+}
+
 var testDeployRecreatePodsConfig = latest.HelmDeploy{
 	Releases: []latest.HelmRelease{{
 		Name:      "skaffold-helm",
@@ -311,6 +326,12 @@ func TestHelmDeploy(t *testing.T) {
 			description: "deploy success",
 			commands:    &MockHelm{},
 			runContext:  makeRunContext(testDeployConfig, false),
+			builds:      testBuilds,
+		},
+		{
+			description: "deploy success with tillerNamespace",
+			commands:    &MockHelm{},
+			runContext:  makeRunContext(testDeployTillerNamespaceConfig, false),
 			builds:      testBuilds,
 		},
 		{

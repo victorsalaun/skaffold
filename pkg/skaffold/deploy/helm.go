@@ -241,6 +241,10 @@ func (h *HelmDeployer) deployRelease(ctx context.Context, out io.Writer, r lates
 		args = append(args, "--namespace", ns)
 	}
 
+	if r.TillerNamespace != "" {
+		args = append(args, "--tiller-namespace", r.TillerNamespace)
+	}
+
 	// Overrides.Values
 	if len(r.Overrides.Values) != 0 {
 		overrides, err := yaml.Marshal(r.Overrides)

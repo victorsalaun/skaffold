@@ -458,6 +458,9 @@ type HelmRelease struct {
 	// Namespace is the Kubernetes namespace.
 	Namespace string `yaml:"namespace,omitempty"`
 
+	// TillerNamespace it the Tiller namespace.
+	TillerNamespace string `yaml:"tillerNamespace,omitempty"`
+
 	// Version is the version of the chart.
 	Version string `yaml:"version,omitempty"`
 
